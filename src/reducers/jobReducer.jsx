@@ -6,6 +6,7 @@ const job = {
     description: '',
     email: '',
     date: '',
+    favorites:[],
 }
 
 export default function jobReducer(state,action){

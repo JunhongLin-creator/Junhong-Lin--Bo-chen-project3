@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router';
 import axios from 'axios';
 
 export default function SearchResult(props){
+    const navigate = useNavigate();
 
     const {title,location,company,description,email,date} = props;
 
@@ -23,7 +24,8 @@ export default function SearchResult(props){
                     description:description,
                     email:email,
                     date:date,
-                })
+                });
+                navigate('./jobDetail');
             }}>
             Title: {title} Location: {location} Company: {company}
             </div>

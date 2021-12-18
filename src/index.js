@@ -10,6 +10,8 @@ import Favorite from './components/Favorite' ;
 import Register from './components/Register';
 import { createStore} from 'redux'
 import reducers from './reducers/reducers';
+import JobDetail from './components/JobDetail';
+import EditJob from './components/EditJob';
 
 const store = createStore(reducers);
 
@@ -18,12 +20,13 @@ const Header=()=>{//Navigation bar
   const userState = useSelector((state)=>state.user);
   
   let LoggedInComponent = [], LoggedOutComponent = [];
-  if(userState.status===false){
+  if(userState.status===false){//logged out
     LoggedInComponent.push(<span key='login'><Link to={"/login"}>Log in </Link></span>);
     LoggedInComponent.push(<span key = 'register'><Link to={"/register"}>Sign up </Link></span>);
     LoggedOutComponent = [];
-  }else{
+  }else{//logged in
       LoggedOutComponent.push(<span><Link to={"/favorite"}>Favorite </Link></span>);
+      LoggedOutComponent.push(<span><Link to={"/create"}>Edit JobDetails </Link></span>);
     LoggedOutComponent.push(<span key = 'logout'><Link to={"/logout"}>Logout </Link></span>);
     LoggedOutComponent.push(<span key='username'>{userState.username}</span>);
     LoggedInComponent = [];
@@ -49,6 +52,8 @@ ReactDOM.render(
           <Route path="/login" element={<Login/>} />
           <Route path="/favorite" element={<Favorite/>} />
           <Route path="/register" element={<Register/>} />
+          <Route path="/jobDetail" element={<JobDetail/>} />
+          <Route path="/edit" element={<EditJob/>} />
         </Routes>
       </Router>
     </Provider>
