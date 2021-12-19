@@ -108,20 +108,6 @@ router.post('/authenticate', function(request, response) {
         .catch((error) => console.error(`Something went wrong: ${error}`));
 
 
-    // return UserModel.findUserByUsername(username)
-    //     .then((userResponse) => {
-    //         if (!userResponse) {
-    //             return response.status(404).send("No user found with that username");
-    //         }
-    //         if (userResponse.password === password) {
-    //             return response.status(200).send("User is logged in!")
-    //         } else {
-    //             return response.status(404).send("No user found with that password");
-    //         }
-    //     })
-    //     .catch(error => res.status(400).send(error))
-
-
 })
 
 

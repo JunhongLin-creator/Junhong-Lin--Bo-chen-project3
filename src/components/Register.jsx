@@ -45,7 +45,6 @@ export default function Register(){
                 })
             }}/>
             <button onClick={()=>{
-                console.log(userData.password);
                 if(userData.password!==userData.passwordVerify){
                     setMessage('Password and password verification don\'t match');
                     return;
