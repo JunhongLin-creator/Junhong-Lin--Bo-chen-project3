@@ -1,0 +1,7 @@
+.loggedout{
+    display:none;
+}
+
+.loggedin{
+    display: block;
+}

@@ -1,4 +1,3 @@
-
 const job = {
     title: '',
     location: '',
@@ -6,7 +5,7 @@ const job = {
     description: '',
     email: '',
     date: '',
-    favorites:[],
+    website:'',
 }
 
 export default function jobReducer(state,action){
@@ -15,12 +14,26 @@ export default function jobReducer(state,action){
         return job;
     }
 
-    if(action.type=='redirect'){
+    if(action.type=='update'){
         state.title = action.title;
         state.location = action.location;
         state.company = action.company;
         state.description = action.description;
         state.email = action.email;
-        state.date = action.date;
+        if(action.date!=undefined){
+            state.date=action.date;
+        }
+        if(action.website!=undefined){
+            state.website=action.website;
+        }
     }
+
+    if(action.type=='delete'){
+        for (const key in state) {
+            if (Object.hasOwnProperty.call(state, key)) {
+                state[key] = '';                
+            }
+        }
+    }
+
 }

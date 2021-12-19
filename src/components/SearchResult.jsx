@@ -17,7 +17,7 @@ export default function SearchResult(props){
         <div>
             <div onClick={()=>{
                 dispatch({
-                    type:'redirect',
+                    type:'update',
                     title: title,
                     location: location,
                     company : company,

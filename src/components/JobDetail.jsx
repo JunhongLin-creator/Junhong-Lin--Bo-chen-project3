@@ -1,18 +1,24 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
+import './JobDetail.css';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 
 export default function JobDetail() {
-    // TODO: handle favorites
-
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
 
     const job = useSelector((state)=>state.job);
     const user = useSelector((state)=>state.user);
     const {title,location,company,description,email,date} = job;
     let favoriteStatus = checkFavorite(job);
+    let isActive = "loggedout";
+    if(user.status==true){
+        isActive = "loggedin";
+    }
 
     return(
         <div>
@@ -22,18 +28,21 @@ export default function JobDetail() {
                         navigate('./login');
                         return;
                     }
-                    if(favoriteStatus){
-                        job.favorites.remove()
-                    }else{
-                        job.favorites.push({
-                            title: title,
-                            location: location,
-                            company : company,
-                            description:description,
-                            email:email,
-                            date:date,
-                        })
-                    }
+                    //send message to server to add favorite
+                    // TODO: handle favorites
+
+                    // if(favoriteStatus){
+                    //     job.favorites.remove()
+                    // }else{
+                    //     job.favorites.push({
+                    //         title: title,
+                    //         location: location,
+                    //         company : company,
+                    //         description:description,
+                    //         email:email,
+                    //         date:date,
+                    //     })
+                    // }
                     
                 }}>
                     Favorite
@@ -45,6 +54,27 @@ export default function JobDetail() {
                         }
                     }}
                 </div>
+                <button class={isActive} onClick={()=>{
+                    axios.put('api/editJob',job)
+                        .then(res=>{
+                            console.log(res);
+                            navigate('./edit/edit');
+                        })
+                        .catch(e=>{console.log(e)});
+                }}>
+                    Edit
+                </button>
+                <button class={isActive} onClick={()=>{
+                    axios.delete('api/editJob',job)
+                    .then(res=>{
+                        dispatch({
+                            type:'delete',
+                        })
+                    })
+                    .catch(e=>{console.log(e)});
+                }}>
+                    Delete
+                </button>
             </div>
 
 

@@ -30,7 +30,7 @@ export default function Homepage(){
                 })
             }}/>
             <button onClick={()=>{
-                axios.post('api/search',searchData)
+                axios.get('api/search',searchData)
                     .then(response=>{
                         console.log(response);
                         const {result} = response.body;//result is a list of {title,location,company}
