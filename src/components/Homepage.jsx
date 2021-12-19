@@ -42,7 +42,7 @@ export default function Homepage(){
                     })
                     .catch(e=>console.log(e));
             }}>Search</button>
-            <div class = {display}>
+            <div className= {display}>
                 <h3>Search result (click on them to show job detail):</h3>
                 {searchResultComponent}
             </div>

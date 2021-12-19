@@ -50,8 +50,9 @@ export default function Register(){
                     setMessage('Password and password verification don\'t match');
                     return;
                 }
-                axios.post('http://localhost:3000/api/users',userData)
+                axios.post('/user',userData)
                     .then(response=>{
+                        console.log("username:"+response);
                         const state = response.body;
                         if(state === 'usernameExists'){
                             setMessage('Can not register!Username already exists!');
