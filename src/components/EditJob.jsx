@@ -14,10 +14,6 @@ export default function EditJob(props) {
 
     //check whether this form is used to create/edit page
     const isEdit = useParams().edit;
-    if(isEdit==='edit'){
-        console.log('succuess')
-        return;
-    }
 
     return (
         <div>
@@ -79,6 +75,23 @@ export default function EditJob(props) {
                         return;
                     }
                 //axios
+                if(isEdit=='edit'){
+                    axios.put("api/editJob",jobState)
+                    .then(res=>{
+                        console.log(res);
+                         const {title,location,company,description,email,date} = res.body;
+                        dispatch({
+                            type:'update',
+                            title: title,
+                            location: location,
+                            company : company,
+                            description:description,
+                            email:email,
+                            date:date,
+                        });
+                    })
+                    .catch(e=>{console.log(e)});
+                }
                 axios.post("api/editJob",jobState)
                     .then(res=>{
                         console.log(res);

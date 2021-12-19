@@ -23,8 +23,6 @@ const Header=()=>{//Navigation bar
   if(userState.status===false){//logged out
     LoggedInComponent.push(<span key='login'><Link to={"/login"}>Log in </Link></span>);
     LoggedInComponent.push(<span key = 'register'><Link to={"/register"}>Sign up </Link></span>);
-    //test
-    LoggedInComponent.push(<span key='create'><Link to={"/edit/:"}>Create JobDetails </Link></span>);
     LoggedOutComponent = [];
   }else{//logged in
       LoggedOutComponent.push(<span><Link to={"/favorite"}>Favorite </Link></span>);

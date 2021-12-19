@@ -16,7 +16,7 @@ export default function JobDetail() {
     const {title,location,company,description,email,date} = job;
     let favoriteStatus = checkFavorite(job);
     let isActive = "loggedout";
-    if(user.status==true){
+    if(user.status==true&&user.username==job.creator){
         isActive = "loggedin";
     }
 
@@ -65,6 +65,7 @@ export default function JobDetail() {
                     Edit
                 </button>
                 <button class={isActive} onClick={()=>{
+                    navigate('/');
                     axios.delete('api/editJob',job)
                     .then(res=>{
                         dispatch({

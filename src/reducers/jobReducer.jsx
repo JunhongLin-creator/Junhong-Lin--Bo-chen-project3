@@ -6,6 +6,7 @@ const job = {
     email: '',
     date: '',
     website:'',
+    creator:'',
 }
 
 export default function jobReducer(state,action){
@@ -25,6 +26,9 @@ export default function jobReducer(state,action){
         }
         if(action.website!=undefined){
             state.website=action.website;
+        }
+        if(action.creator!=undefined){
+            state.creator=action.creator;
         }
     }
 
